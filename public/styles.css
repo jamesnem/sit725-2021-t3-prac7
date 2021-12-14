@@ -35,6 +35,17 @@ header{
   padding-right: 15px;
 }
 
+.carousel .carousel-item {
+	width: 300px !important;
+	padding: 30px;
+}
+
+.card{ 
+	border-radius: 8px; 
+	position: relative !important;
+	right: 20px !important;
+}
+
 @media only screen and (max-width : 992px) {
   header, main, footer {
     padding-left: 0;

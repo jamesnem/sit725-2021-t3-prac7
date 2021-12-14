@@ -23,22 +23,57 @@
 
     <main>
         <div class="container">
-            <h2 class="title">Previous Works</h2>
+            <h2 class="title">Project Ideas</h2>
             <div class="row">
                 <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Search Project" id="search_pro" type="text" class="validate">
-                        </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Search Project" id="search_pro" type="text" class="validate">
                     </div>
                 </form>
             </div>
 
-            <div class="carousel" id="carousel-projects">
-                <a class="carousel-item" href="#one!"><img src="assets/explorer.png"></a>
-                <a class="carousel-item" href="#two!"><img src="assets/sublearn.png"></a>
-                <a class="carousel-item" href="#three!"><img src="assets/climbing.jpg"></a>
+            <div class="row">
+                <div class="carousel" id="carousel-projects" style="height:570px">
+
+                </div>
             </div>
+
+            <div id="add-project" class="modal">
+                <div class="modal-content">
+                    <h4>Add New Project</h4>
+                    <div class="row">
+                        <div class="form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="project-id" type="text">
+                                  <label for="project-id">Project ID</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="project-title" type="text">
+                                  <label for="project-title">Project Title</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="project-description" type="text">
+                                  <label for="project-description">Project Description</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="waves-effect waves-light green btn" style="margin-left: 10px;" id="submit-project">Submit</a>
+                    <a href="#!" class="modal-close waves-effect waves-red red btn">Close</a>
+                </div>
+            </div>
+
+            <a class="modal-trigger btn-floating btn-large waves-effect waves-light red"
+                style="position: fixed; right:10px; bottom:50px;" href="#add-project"><i
+                    class="material-icons">add</i></a>
+
         </div>
     </main>
 
@@ -61,13 +96,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="env.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#carousel-projects').carousel();
-        });
-    </script>
-
 </body>
 
 </html>
