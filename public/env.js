@@ -48,13 +48,15 @@ $(document).ready(function () {
     $('.sidenav').sidenav();
   })
 
+  const cp = $('#carousel-projects');
+
   $.get('/projects', (result) => {
     for (let items of result) {
       contentsCards(items)
-      $('#carousel-projects').append(projectDisplay(items))
+      cp.append(projectDisplay(items))
       console.log(items)
     }
-    $('#carousel-projects').carousel();
+    cp.carousel();
   })
 
   $('.modal').modal();
