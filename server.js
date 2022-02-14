@@ -1,6 +1,5 @@
 let express = require("express");
 let dbCon = require("./db/connection");
-var cors = require('cors');
 let app = express();
 
 //var app = require('express')();
@@ -12,36 +11,24 @@ var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
-app.use(cors());
 
 app.get("/test", function (request, response) {
   var user_name = "James Nemecek";
   response.end("Hello " + user_name + "!");
 });
 
-//socket test
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-  setInterval(() => {
-    socket.emit('number', parseInt(Math.random() * 10));
-  }, 1000);
-});
-
 const projects = [];
+
 for (let id = 1; id < 6; id++) {
   projects.push({
     projectID: id,
     title: `Project ${id}`,
     info: `Information about ${id}`,
     img: null,
-  });
+  }); 
 }
 
 app.get("/projects", function (request, response) {
-  //response.json(projects);
   dbCon.getDb().collection("projectData").find({}).toArray((err, res) =>{
     if (err)
       throw err
@@ -61,9 +48,7 @@ app.post("/projects", function (request, response) {
 });
 
 
-
 dbCon.connectToDatabase(function (err) {
-
   if (err) {
     console.error(err);
     process.exit();
@@ -72,7 +57,3 @@ dbCon.connectToDatabase(function (err) {
     console.log("Listening on port ", port);
   });
 });
-
-
-//this is only needed for Cloud foundry 
-require("cf-deployment-tracker-client").track();
