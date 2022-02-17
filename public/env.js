@@ -23,20 +23,21 @@ function contentsCards(proj) {
 
 function projectDisplay(project) {
   return `
-  <a class="carousel-item black-text"">
-    <div class="card">
+  <div class="carousel-item black-text" id="project-items-${project.projectID}">
+    <div class="card sticky-action">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="${project.img ? project.img : "assets/no_image.png"}">
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">${project.title}<i class="material-icons right">more_vert</i></span>
       </div>
+      <a class="btn-floating halfway-fab waves-effect waves-light red" onClick="deleteProject(${project.projectID})"><i class="material-icons">delete</i></a>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">${project.title}<i class="material-icons right">close</i></span>
         <p>${project.info}</p>
       </div>
     </div>
-  </a>`;
+  </div>`;
 }
 
 function getBase64(file) {
@@ -62,7 +63,7 @@ function createProject() {
           "img": d
         };
         var settings = {
-          "url": "/projects",
+          "url": "/api/projects",
           "method": "POST",
           "timeout": 0,
           "headers": {
@@ -79,11 +80,22 @@ function createProject() {
           $("#project-description").val('');
           $("#project-img").val('');
           $(".modal").modal('close');
-          console.log(response)
         })
       }
     )
   }
+}
+
+function deleteProject(id) {
+  var settings = {
+    "url": `/api/projects/${id}`,
+    "method": "DELETE",
+    "timeout": 0,
+  };
+  
+  $.ajax(settings).done(function (response) {
+    $(`#project-items-${id}`).remove()
+  });
 }
 
 
@@ -100,7 +112,7 @@ $(document).ready(function () {
     createProject();
   });
 
-  $.get('/projects', (result) => {
+  $.get('/api/projects', (result) => {
     for (let items of result) {
       contentsCards(items)
       cp.append(projectDisplay(items))
