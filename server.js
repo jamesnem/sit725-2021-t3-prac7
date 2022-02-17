@@ -10,12 +10,7 @@ const bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.json());
-
-app.get("/test", function (request, response) {
-  var user_name = "James Nemecek";
-  response.end("Hello " + user_name + "!");
-});
+app.use(express.json({limit:'100mb'}));
 
 const projects = [];
 
@@ -25,20 +20,21 @@ for (let id = 1; id < 6; id++) {
     title: `Project ${id}`,
     info: `Information about ${id}`,
     img: null,
-  }); 
+  });
 }
 
 app.get("/projects", function (request, response) {
-  dbCon.getDb().collection("projectData").find({}).toArray((err, res) =>{
+  dbCon.getDb().collection("projectData").find({}).toArray((err, res) => {
     if (err)
       throw err
     response.send(res);
   });
 });
 
+
 app.post("/projects", function (request, response) {
   const project = request.body;
-  console.log(JSON.stringify(project));
+  //console.log(JSON.stringify(project));
   if (project) {
     dbCon.getDb().collection("projectData").insertOne(project)
   } else {
@@ -47,13 +43,12 @@ app.post("/projects", function (request, response) {
   response.sendStatus(204);
 });
 
-
-dbCon.connectToDatabase(function (err) {
+dbCon.connectToDB(function (err) {
   if (err) {
     console.error(err);
     process.exit();
   }
-  http.listen(port,() => {
+  http.listen(port, () => {
     console.log("Listening on port ", port);
   });
 });
