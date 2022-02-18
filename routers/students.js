@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+//Declare routes of student data
 router.get('/', (req, res) => {
     res.send("Hello from student get all resources api")
 })

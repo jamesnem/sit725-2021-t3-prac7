@@ -5,6 +5,7 @@ socket.on('number', (msg) => {
   console.log('Random number: ' + msg);
 })
 
+//Prefill database and carousel if users enter a project id equal to 1, 2, or 3
 function contentsCards(proj) {
   if (proj.projectID == 1) {
     proj.title = "SubLearn";
@@ -21,6 +22,7 @@ function contentsCards(proj) {
   }
 }
 
+//Create function that fills html code with project ID, title, info, and image
 function projectDisplay(project) {
   return `
   <div class="carousel-item black-text" id="project-items-${project.projectID}">
@@ -40,6 +42,7 @@ function projectDisplay(project) {
   </div>`;
 }
 
+//Allow users to enter an image
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -49,6 +52,7 @@ function getBase64(file) {
   });
 }
 
+//Allow users to add a project to the carousel
 function createProject() {
   let img = document.querySelector("#project-img").files[0];;
   if (img) {
@@ -87,20 +91,21 @@ function createProject() {
   }
 }
 
+//Allow users to delete a project card from carousel
 function deleteProject(id) {
   var settings = {
     "url": `/api/projects/${id}`,
     "method": "DELETE",
     "timeout": 0,
   };
-  
+
   $.ajax(settings).done(function (response) {
     $(`#project-items-${id}`).remove()
   });
   alert("Project Deleted");
 }
 
-
+//Call approriate functions to add projects when application is running
 $(document).ready(function () {
   $("#main-nav").load("components/navbar.html", () => {
     $('.sidenav').sidenav();

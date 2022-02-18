@@ -3,6 +3,7 @@ const router = express.Router();
 
 const projectService = require('../services/projects');
 
+//Declare routes of project data
 router.get('/', (req, res) => {
     projectService.allProjects(res);
 })
