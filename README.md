@@ -1,5 +1,6 @@
 ************************************************************************************************************************************
 
+                                                                 ABOUT
 Hello my name is James
 
 This repository holds files that primarily demonstrating HTML design, API routing, database interactions, and MVC modelling through
@@ -17,9 +18,13 @@ within each html file responsible for the main UI, displaying a horizontal navba
 appropraite routes used to get and post project and student data. Whereas, the Services folder a file that provides the 
 functinality to the project routes.
 
-                               ________________________________________________
+                                            ________________________________________________
+
+                                                               INSTRUCTIONS
 
 This web applications succesfully runs by using express, Nodejs, MongoDb. Despite the dependancy list in the package.json
-file, body-parser, and cors are not required. Lastly, nodemon is only required when runing as a developer.
+file, body-parser, and cors are not required. Nodemon is only required when runing as a developer.
+
+To successfully run the web application, express is initially required to be installed on your local device. This can be achieved by entering ‘npm install express’ if you are using node package manager. Subsequently, entering ‘npm run start’ will run the application locally being hosted on port 8080, accessible via a web browser with this address, localhost:8080. No other special instructions are required to successfully run the web application.
 
 
