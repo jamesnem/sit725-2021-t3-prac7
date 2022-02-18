@@ -81,6 +81,7 @@ function createProject() {
           $("#project-img").val('');
           $(".modal").modal('close');
         })
+        alert("Project Added");
       }
     )
   }
@@ -96,6 +97,7 @@ function deleteProject(id) {
   $.ajax(settings).done(function (response) {
     $(`#project-items-${id}`).remove()
   });
+  alert("Project Deleted");
 }
 
 
